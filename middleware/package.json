@@ -5,12 +5,12 @@
     "lambda-middleware": "bin/lambda-middleware.js"
   },
   "scripts": {
-    "bootstrap_functions": "cd ./packages/functions && npm i",
+    "bootstrap:functions": "cd ./packages/functions && npm i",
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
     "cdk": "cdk",
-    "deploy": "npm run bootstrap_functions && npm run build && cdk deploy"
+    "deploy": "npm run bootstrap:functions && npm run build && cdk deploy"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",
