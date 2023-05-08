@@ -41,7 +41,45 @@ The browser and server APIs used for this demo are pre-realease APIs, currently 
 ✨  Deployment time: 1.61s
 
 Outputs:
-IntercomLambdaMiddlewareStack.intercommiddlewareintercommiddlewareapigwEndpointFAB4FAC4 = https://{the API URL generated for you}/prod/
+IntercomLambdaMiddlewareStack.{long resource id omitted} = https://{the API URL generated for you}/prod/
 ```
 
 ### Intercom Configuration
+
+#### Intercom Messenger (browser chat widget)
+
+- Go through the motions of installing the Intercom JavaScript code per this article.
+- You'll see an app_id value that you can put into the placeholder found in the <head> of this homepage.
+
+#### Web hook subscriptions
+
+- Supscribe to two topics using the web hook URL created during AWS Configuration:
+  - conversation.admin.closed
+  - conversation.rating.added
+- Make sure to add "intercom" to the URL path when configuring your web hook endpoint URL: `https://{the API URL generated for you}/prod/intercom`
+- Details about configuring web hooks and subscribing to topics can be found here.
+
+## Using Intercom Conversation Data in FullStory
+
+### Capturing Intercom conversation events
+
+Once everything is configured, the following events can be sent to FullStory using this demo app:
+
+- Intercom Conversation Opened
+- Intercom Conversation Closed
+- Intercom Conversation Rated
+
+You'll need to play the part of both the customer and the Customer Support agent. You'll receive messages from yourself in your Intercom Inbox. When you open the chat widget (playing the part of the user) a Intercom Conversation Opened event is attached to the session. When you close the conversation (playing the part of the agent) a Intercom Conversation Closed event is attached to the session. If a follow-up rating request is sent to the user via chat, a Intercom Conversation Rated event is attached to the session once the user rates the conversation. Head's up that the rating request is only triggered under certain conditions. Those conditions can be found here.
+
+### Capturing Intercom conversation events
+
+### Anaylizing Data in FullStory
+
+#### Funnels
+todo
+
+#### Segements
+todo
+
+#### Alerts
+todo
