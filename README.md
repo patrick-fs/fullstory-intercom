@@ -81,9 +81,11 @@ You'll need to play the part of both the customer and the Customer Support agent
 | Funnels can track drop off in customer service conversations |
 
 #### Segements
-![fs_segment](https://user-images.githubusercontent.com/45576380/236955780-0f27141f-906b-4e57-9190-411f28010b1f.png)
-You can find sessions for users who completed a chat or users who rated a chat poorly (or well!)
+| ![fs_segment](https://user-images.githubusercontent.com/45576380/236955780-0f27141f-906b-4e57-9190-411f28010b1f.png) |
+|:--:|
+| You can find sessions for users who completed a chat or users who rated a chat poorly (or well!) |
 
 #### Alerts
-![fs_segment_alert](https://user-images.githubusercontent.com/45576380/236955794-d0f18f72-a1cd-4c67-bf39-b0f5d3aaa66e.png)
-Alerts can be configured to fire based off of the rate that users are providing negative survey feedback
+| ![fs_segment_alert](https://user-images.githubusercontent.com/45576380/236955794-d0f18f72-a1cd-4c67-bf39-b0f5d3aaa66e.png) |
+|:--:|
+| Alerts can be configured to fire based off of the rate that users are providing negative survey feedback |
