@@ -4,6 +4,8 @@ A demonstration of how [FullStory sessions](https://www.fullstory.com/platform/s
 via Intercom's [webhook API](https://developers.intercom.com/intercom-api-reference/reference/webhooks) and 
 FullStory's [server events API](https://developer.fullstory.com/server/v2/events/create-events/).
 
+![Intercom_flow](https://user-images.githubusercontent.com/45576380/236958638-3f5c3392-1ca5-4d44-8723-33242b34f333.png)
+
 ### Scenario
 
 1. A customer reaches out to a support agent via the Intercom chat widget.
