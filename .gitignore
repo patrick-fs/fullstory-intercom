@@ -130,3 +130,5 @@ dist
 .pnp.*
 
 .DS_STORE
+cdk.out
+*.js
