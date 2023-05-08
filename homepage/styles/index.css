@@ -1,0 +1,105 @@
+@font-face {
+  font-family: museosanscyrl-300;
+  src: url(../fonts/museosanscyrl-300.ttf);
+}
+@font-face {
+  font-family: museosanscyrl-700;
+  src: url(../fonts/museosanscyrl-700.ttf);
+}
+@font-face {
+  font-family: MaisonNeue-Medium;
+  src: url(../fonts/MaisonNeue-Medium.ttf);
+}
+
+body {
+  font-family: museosanscyrl-300, sans-serif;
+  line-height: 1.5;
+  max-width: 2000px;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #882258;
+  color: #fff;
+  font-family: museosanscyrl-700, sans-serif;
+  font-size: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #f8598b;
+}
+
+li {
+  padding: .5rem 0;
+}
+
+header h1 {
+  margin-bottom: 0;
+}
+
+#fullstory-logo {
+  background-image: url(../images/Fullstory-logo.png);
+  background-repeat: no-repeat;
+  background-size: 35rem;
+  background-position: center;
+  display: block;
+  height: 13rem;
+  width: 100%;
+}
+
+#container {
+  padding: 0 7rem 0 7rem;
+}
+
+footer {
+  width: 100%;
+  background-color: #4c5f88;
+  margin-top: 2em;
+  padding-bottom: 1.5em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+footer div {
+  display: flex;
+  align-items: center;
+  padding-left: 2em;
+  padding-top: 2em;
+  padding: 1.5em 0 0 2em;
+}
+footer img {
+  width: 32px;
+}
+footer a {
+  text-decoration: none;
+  color: #fff;
+  margin-left: .5em;
+}
+
+@media (max-width: 670px) {
+  #container {
+    padding: 0 2.4rem 0 2rem;
+  }
+  header h1 {
+    font-size: 1.5rem;
+    padding: 0 1rem 0 1rem;
+    text-align: center;
+  }
+  #fullstory-logo {
+    background-size: 60%;
+    height: 7em;
+  }
+  footer {
+    flex-flow: column;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 420px) {
+  #fullstory-logo {
+    background-size: 90%;
+  }
+}

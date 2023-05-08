@@ -5,6 +5,9 @@
 
     <title>FullStory with Intercom</title>
     <meta name="description" content="This is a sample app that demonstrates how FullStory session replay and Intercom chat webhook events can be used together with FullStory's v2beta Server API">
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/index.css">
+    
     <script>
       // https://developer.fullstory.com/browser/v2/getting-started/
       window['_fs_host'] = 'staging.fullstory.com';
@@ -50,11 +53,16 @@ return g._w[s].apply(this,arguments)}),g._v="2.0.0")}(window,document,window._fs
           // https://developer.fullstory.com/browser/v2/capture-events/analytics-events/
           FS('trackEvent', { name: 'Intercom Conversation Opened' })
         });
-      }
-        
+      }        
     </script>        
   </head>
   <body>
-      <h1>Intercom Demo</h1>
+    <header>
+      <h1>Intercom chat webhook integration with</h1>
+      <div id="fullstory-logo"></div>
+    </header>
+    <div id="container">
+      <h3>What is this?</h3>
+    </div>
   </body>
 </html>
