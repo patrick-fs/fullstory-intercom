@@ -85,11 +85,11 @@ When you open the chat widget (playing the part of the user) a Intercom Conversa
 | [Funnels](https://help.fullstory.com/hc/en-us/articles/360045159373-About-Funnels) can track drop off in customer service conversations |
 
 #### Segements
-| ![fs_segment](https://user-images.githubusercontent.com/45576380/236955780-0f27141f-906b-4e57-9190-411f28010b1f.png) |
+| ![fs_segment](https://user-images.githubusercontent.com/45576380/236959472-35a0c89c-fbf8-4d2a-8512-6839de28d034.png) |
 |:--:|
 | You can [find sessions for users](https://help.fullstory.com/hc/en-us/articles/360020829633#Segment) who completed a chat or users who rated a chat poorly (or well!) |
 
 #### Alerts
-| ![fs_segment_alert](https://user-images.githubusercontent.com/45576380/236955794-d0f18f72-a1cd-4c67-bf39-b0f5d3aaa66e.png) |
+| ![fs_segment_alert](https://user-images.githubusercontent.com/45576380/236959438-55c5cc65-273b-4b7e-a0fb-fd39be1f9019.png) |
 |:--:|
 | [Alerts](https://help.fullstory.com/hc/en-us/articles/360020828653-Introduction-to-Alerts) can be configured to fire based off of the rate that users are providing negative survey feedback |
