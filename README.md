@@ -80,7 +80,7 @@ When you open the chat widget (playing the part of the user) a Intercom Conversa
 ### Anaylizing Data in FullStory
 
 #### Funnels
-| ![fs_funnel](https://user-images.githubusercontent.com/45576380/236955731-226517f9-429e-4395-9258-3a5a1e5a68c6.png) |
+| ![fs_funnel](https://user-images.githubusercontent.com/45576380/236959291-d6bf3bfd-17ae-4d25-9c6b-be403f3489c1.png) |
 |:--:|
 | [Funnels](https://help.fullstory.com/hc/en-us/articles/360045159373-About-Funnels) can track drop off in customer service conversations |
 
