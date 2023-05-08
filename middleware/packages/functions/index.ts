@@ -22,7 +22,7 @@ exports.handler = async (hookReqeust: APIGatewayProxyEvent): Promise<APIGatewayP
       events: [ { name: 'Intercom Conversation Closed' } ]
     };    
   } else if (body.topic === 'conversation.rating.added') {
-    const rating = response.data.item.conversation_rating.rating;
+    const rating = body.data.item.conversation_rating.rating;
     events = {
       session: { id: session_id },
       events: [
@@ -31,7 +31,7 @@ exports.handler = async (hookReqeust: APIGatewayProxyEvent): Promise<APIGatewayP
           properties: { rating }
         }
       ]
-    };
+    };    
   } else {
     return success('no-op');
   }
