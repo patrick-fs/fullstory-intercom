@@ -73,8 +73,6 @@ You'll need to play the part of both the customer and the Customer Support agent
 When you open the chat widget (playing the part of the user) a Intercom Conversation Opened event is attached to the session. When you close the conversation (playing the part of the agent) a Intercom Conversation Closed event is attached to the session. If a follow-up rating request is sent to the user via chat, a Intercom Conversation Rated event is attached to the session once the user rates the conversation. Head's up that the rating request is only triggered under certain conditions. Those conditions can be found 
 [here](https://www.intercom.com/help/en/articles/941027-measure-customer-satisfaction-with-conversation-ratings#when-does-operator-send-conversation-ratings).
 
-### Capturing Intercom conversation events
-
 ### Anaylizing Data in FullStory
 
 #### Funnels
