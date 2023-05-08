@@ -15,6 +15,8 @@ FullStory's [server events API](https://developer.fullstory.com/server/v2/events
 5. An AWS Lambda function + API gateway endpoint is subscribed to these two web hook events in Intercom.
 6. The AWS Lambda function creates custom events via the FullStory API that links the chat events with the session replay where the chat occurred.
 
+## Demo Setup
+
 ### Prerequisites
 
 There are a few things you'll need to do before running this example yourself:
