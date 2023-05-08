@@ -76,8 +76,9 @@ You'll need to play the part of both the customer and the Customer Support agent
 ### Anaylizing Data in FullStory
 
 #### Funnels
-![fs_funnel](https://user-images.githubusercontent.com/45576380/236955731-226517f9-429e-4395-9258-3a5a1e5a68c6.png)
-Funnels can track drop off in customer service conversations
+| ![fs_funnel](https://user-images.githubusercontent.com/45576380/236955731-226517f9-429e-4395-9258-3a5a1e5a68c6.png) |
+|:--:|
+| Funnels can track drop off in customer service conversations |
 
 #### Segements
 ![fs_segment](https://user-images.githubusercontent.com/45576380/236955780-0f27141f-906b-4e57-9190-411f28010b1f.png)
