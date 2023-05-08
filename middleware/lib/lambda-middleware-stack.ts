@@ -21,6 +21,7 @@ class IntercomMiddelWare extends Construct {
     });
 
     handler.addEnvironment('INTERCOM_API_KEY', process.env.INTERCOM_API_KEY!);
+    handler.addEnvironment('FULLSTORY_API_KEY', process.env.FULLSTORY_API_KEY!);
 
     const api = new apigw.RestApi(this, 'intercom-middleware-apigw');
 
