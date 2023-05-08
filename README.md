@@ -29,7 +29,7 @@ There are a few things you'll need to do before running this example yourself:
 The browser and server APIs used for this demo are pre-realease APIs, currently deployed to FullStory's staging environment. At this point in time, only FullStorians can access these APIs.
 
 - Use the v2 snippet to get access the pre-release [v2beta browser API](https://developer.fullstory.com/browser/v2/getting-started/).
-- An example of the v2 snippet, as well as a placeholder for your staging `window['_fs_org']` value can be found in the `<head>` of [this homepage](https://github.com/patrick-fs/fullstory-intercom/blob/main/homepage/index.html).
+- An example of the v2 snippet, as well as a placeholder for your staging `window['_fs_org']` value can be found in the `<head>` of [the homepage](https://github.com/patrick-fs/fullstory-intercom/blob/main/homepage/index.html).
 
 ### AWS Configuration
 
@@ -49,7 +49,7 @@ IntercomLambdaMiddlewareStack.{long resource id omitted} = https://{the API URL 
 #### Intercom Messenger (browser chat widget)
 
 - Go through the motions of installing the Intercom JavaScript code per [this article](https://www.intercom.com/help/en/articles/167-install-intercom-in-your-product-for-visitors-and-leads).
-- You'll see an app_id value that you can put into the placeholder found in the `<head>` of [this homepage](https://github.com/patrick-fs/fullstory-intercom/blob/main/homepage/index.html).
+- You'll see an app_id value that you can put into the placeholder found in the `<head>` of [the homepage](https://github.com/patrick-fs/fullstory-intercom/blob/main/homepage/index.html).
 
 #### Web hook subscriptions
 
