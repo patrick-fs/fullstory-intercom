@@ -1,25 +1,42 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import axios from 'axios';
+import { init, CreateEventsRequest } from './fullstory';
 
 const instance = axios.create({
   baseURL: 'https://api.intercom.io',
   headers: { common: { Authorization: `Bearer ${process.env.INTERCOM_API_KEY}` } }
 });
 
-exports.handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  console.log(event.body);
-  const body = JSON.parse(event.body ? event.body : '{}');
+exports.handler = async (hookReqeust: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+  const body = JSON.parse(hookReqeust.body ? hookReqeust.body : '{}');
   const userId = body.data.item.contacts.contacts[0].id;
   const response = await instance.get(`/contacts/${userId}`);
-  console.log(JSON.stringify(response.data));
   const session_id = response.data.custom_attributes.fs_session_id;
-  console.log(`session_id ${session_id}`);
-  // TODO: create a custom event with session id
-  
-  // topic #1: conversation.admin.closed
-  // topic #2: conversation.rating.added
 
-  // WORKAROUND: create custom event with most recent session & hard-coded uid
+  const { createEvents } = init(process.env.FULLSTORY_API_KEY);
+  let events: CreateEventsRequest;
+
+  if (body.topic === 'conversation.admin.closed') {
+    events = {
+      session: { id: session_id },
+      events: [ { name: 'Intercom Conversation Closed' } ]
+    };    
+  } else if (body.topic === 'conversation.rating.added') {
+    const rating = response.data.item.conversation_rating.rating;
+    events = {
+      session: { id: session_id },
+      events: [
+        {
+          name: 'Intercom Conversation Rated',
+          properties: { rating }
+        }
+      ]
+    };
+  } else {
+    return success('no-op');
+  }
+
+  await createEvents(events);
   return success('all good');
 }
 
