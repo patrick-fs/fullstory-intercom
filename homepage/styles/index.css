@@ -14,7 +14,7 @@
 body {
   font-family: museosanscyrl-300, sans-serif;
   line-height: 1.5;
-  max-width: 2000px;
+  /*max-width: 2000px;*/
 }
 
 header {
@@ -40,6 +40,13 @@ header h1 {
   margin-bottom: 0;
 }
 
+pre {
+  font-size: 1rem;
+  background-color: #5D6F8366;
+  border-radius: 5px;
+  padding: 5px;
+}
+
 #fullstory-logo {
   background-image: url(../images/Fullstory-logo.png);
   background-repeat: no-repeat;
@@ -52,6 +59,23 @@ header h1 {
 
 #container {
   padding: 0 7rem 0 7rem;
+  width: 75%;
+}
+
+#intercom-flow {
+  background-image: url(../images/Intercom_flow.png);
+  background-repeat: no-repeat;
+  display: block;
+  height: 20rem;
+  width: 100%;
+}
+
+.screenshot {
+  display: inline-block;
+}
+
+.screenshot p {
+  text-align: center;
 }
 
 footer {

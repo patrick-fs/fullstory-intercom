@@ -7,7 +7,7 @@
     <meta name="description" content="This is a sample app that demonstrates how FullStory session replay and Intercom chat webhook events can be used together with FullStory's v2beta Server API">
     <link rel="stylesheet" type="text/css" href="styles/normalize.css">
     <link rel="stylesheet" type="text/css" href="styles/index.css">
-    
+
     <script>
       // https://developer.fullstory.com/browser/v2/getting-started/
       window['_fs_host'] = 'staging.fullstory.com';
@@ -63,6 +63,103 @@ return g._w[s].apply(this,arguments)}),g._v="2.0.0")}(window,document,window._fs
     </header>
     <div id="container">
       <h3>What is this?</h3>
+      <p>
+        This is a demonstration of how <a href="https://www.fullstory.com/platform/session-insights/">FullStory sessions</a> can be linked to customer support events 
+        via Intercom's <a href="https://developers.intercom.com/intercom-api-reference/reference/webhooks">webhook API</a> and 
+        FullStory's <a href="https://developer.fullstory.com/server/v2/events/create-events/">server events API</a>.        
+      </p>
+      <div id="intercom-flow"></div>
+      <h3>Scenario</h3>
+        <ol>
+          <li>A customer reaches out to a support agent via the Intercom chat widget.</li>
+          <li>Once the customer's issue has been resolved, the support agent closes out the conversation.</li>
+          <li>Depending on how much back and forth there is between the customer and support agent, the customer may see a rating widget in the chat.</li>
+          <li>Web hook events are triggered from Intercom both when the chat is closed by the agent and when the customer rates the conversation.</li>
+          <li>An AWS Lambda function + API gateway endpoint is subscribed to these two web hook events in Intercom.</li>
+          <li>The AWS Lambda function creates custom events via the FullStory API that links the chat events with the session replay where the chat occurred.</li>
+        </ol>
+      <h3>Prerequisites</h3>
+      <p>
+        There are a few things you'll need to do before running this example yourself:
+        <ul>
+          <li>Create a FullStory account - get started with <a href = "https://help.fullstory.com/hc/en-us/articles/360020623354-FullStory-Free-Edition">FullStory Free Edition</a></li>
+          <li>Create an Intercom account - you can sign up for a <a href="https://www.intercom.com/help/en/articles/891-how-do-i-sign-up-for-a-free-trial-of-intercom">free 14 day trial</a></li>
+          <li>Create an <a href="https://repost.aws/knowledge-center/create-and-activate-aws-account">AWS Account</a> and a <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html">CLI credential file</a>.
+            <ul>
+              <li>Your IAM credential will need permissions to create additional IAM resources to bootstrap the <a href="https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html">AWS CDK library</a> used to deploy the AWS Lambda function + API gateway endpoint.</li>
+              <li>This <a href="https://stackoverflow.com/questions/57118082/what-iam-permissions-are-needed-to-use-cdk-deploy">Stackoverflow article</a> identifies the permissions needed for your IAM credential to deploy resources.</li>
+            </ul>
+          </li>
+          <li>Check out the source code from GitHub: <a href="https://github.com/patrick-fs/fullstory-intercom">https://github.com/patrick-fs/fullstory-intercom</a></li>
+        </ul>
+      </p>
+      <h3>FullStory Configuration</h3>
+      <p>
+        The browser and server APIs used for this demo are pre-realease APIs, currently deployed to FullStory's staging environment. At this point in time, only FullStorians can access these APIs.
+        <ul>
+          <li>Use the v2 snippet to get access the pre-release <a href="https://developer.fullstory.com/browser/v2/getting-started/">v2beta browser API</a>.</li>
+          <li>An example of the v2 snippet, as well as a placeholder for your staging <code>window['_fs_org']</code> value can be found in the <code>&lt;head&gt;</code> of <a href="https://github.com/patrick-fs/fullstory-intercom/blob/main/homepage/index.html">this homepage</a>.</li>
+        </ul>
+      </p>
+      <h3>AWS Configuration</h3>
+      <ul>
+        <li>Once you've run the <code>cdk bootstrap</code> command to get the AWS CDK setup for use on your workstation, run <code>npm i</code> in the <em>middleware</em> directory.</li>
+        <li>To deploy the AWS Lambda function + API Gateway that will be used to receive Intercom webhooks, run <code>npm run deploy</code> in the <em>middleware</em> directory.</li>
+        <li>Take note of the "Outputs" section in the terminal once the deploy command has finished running. This will used for your web hook configruation in Intercom:</li>
+      </ul>
+      <pre>
+✨  Deployment time: 1.61s
+
+Outputs:
+IntercomLambdaMiddlewareStack.intercommiddlewareintercommiddlewareapigwEndpointFAB4FAC4 = https://{the API URL generated for you}/prod/</pre>
+      <h3>Intercom Configuration</h3>
+      <h4>Intercom Messenger (browser chat widget)</h4>
+      <ul>
+        <li>Go through the motions of installing the Intercom JavaScript code per <a href="https://www.intercom.com/help/en/articles/167-install-intercom-in-your-product-for-visitors-and-leads">this article</a>.</li>
+        <li>You'll see an <code>app_id</code> value that you can put into the placeholder found in the <code>&lt;head&gt;</code> of <a href="https://github.com/patrick-fs/fullstory-intercom/blob/main/homepage/index.html">this homepage</a>.</li>        
+      </ul>
+      <h4>Web hook subscriptions</h4>
+      <ul>
+        <li>
+          Supscribe to two topics using the web hook URL created during AWS Configuration:
+          <ul>
+            <li>conversation.admin.closed</li>
+            <li>conversation.rating.added</li>
+          </ul>
+        </li>
+        <li>Make sure to add "intercom" to the URL path when configuring your web hook endpoint URL: <code>https://{the API URL generated for you}/prod/intercom</code></li>
+        <li>Details about configuring web hooks and subscribing to topics can be found <a href="https://developers.intercom.com/building-apps/docs/setting-up-webhooks">here</a>.</li>
+      </ul>     
+      <h2>Using Intercom Conversation Data in FullStory</h2>
+      <h3>Capturing Intercom conversation events</h3>
+      <p>
+        Once everything is configured, the following events can be sent to FullStory using this demo app:
+        <ul>
+          <li>Intercom Conversation Opened</li>
+          <li>Intercom Conversation Closed</li>
+          <li>Intercom Conversation Rated</li>
+        </ul>
+        You'll need to play the part of both the customer and the Customer Support agent. 
+        You'll receive messages from yourself in your <a href="https://www.intercom.com/help/en/articles/6274899-get-started-with-the-inbox">Intercom Inbox</a>.
+        When you open the chat widget (playing the part of the user) a Intercom Conversation Opened event is attached to the session. 
+        When you close the conversation (playing the part of the agent) a Intercom Conversation Closed event is attached to the session.
+        If a follow-up rating request is sent to the user via chat, a Intercom Conversation Rated event is attached to the session once the user rates the conversation.
+        Head's up that the rating request is only triggered under certain conditions. Those conditions can be found 
+        <a href="https://www.intercom.com/help/en/articles/941027-measure-customer-satisfaction-with-conversation-ratings#when-does-operator-send-conversation-ratings">here</a>.
+      </p>
+      <h3>Anaylizing Data in FullStory</h3>
+      <h4>Funnels</h4>
+      <div class="screenshot"><img src="images/fs_funnel.png"/>
+        <p><a href="https://help.fullstory.com/hc/en-us/articles/360045159373-About-Funnels">Funnels</a> can track drop off in customer service conversations</p>
+      </div>
+      <h4>Building Segments</h4>
+      <div class="screenshot"><img src="images/fs_segment.png"/>
+        <p>You can <a herf="https://help.fullstory.com/hc/en-us/articles/360020829633#Segment">find sessions for users</a> who completed a chat or users who rated a chat poorly (or well!)</p>
+      </div>
+      <h4>Segment Alerts</h4>
+      <div class="screenshot"><img src="images/fs_segment_alert.png"/>
+        <p><a href="https://help.fullstory.com/hc/en-us/articles/360020828653-Introduction-to-Alerts">Alerts</a> can be configured to fire based off of the rate that users are providing negative survey feedback</p>
+      </div>
     </div>
   </body>
 </html>
