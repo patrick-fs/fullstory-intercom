@@ -1,8 +1,8 @@
 # Intercom chat webhook integration with FullStory
 
-A demonstration of how <a href="https://www.fullstory.com/platform/session-insights/">FullStory sessions</a> can be linked to customer support events 
-via Intercom's <a href="https://developers.intercom.com/intercom-api-reference/reference/webhooks">webhook API</a> and 
-FullStory's <a href="https://developer.fullstory.com/server/v2/events/create-events/">server events API</a>.
+A demonstration of how [FullStory sessions](https://www.fullstory.com/platform/session-insights/) can be linked to customer support events 
+via Intercom's [webhook API](https://developers.intercom.com/intercom-api-reference/reference/webhooks) and 
+FullStory's [server events API](https://developer.fullstory.com/server/v2/events/create-events/).
 
 ### Scenario
 
@@ -17,19 +17,19 @@ FullStory's <a href="https://developer.fullstory.com/server/v2/events/create-eve
 
 There are a few things you'll need to do before running this example yourself:
 
-- Create a FullStory account - get started with FullStory Free Edition
-- Create an Intercom account - you can sign up for a free 14 day trial
-- Create an AWS Account and a CLI credential file.
-  - Your IAM credential will need permissions to create additional IAM resources to bootstrap the AWS CDK library used to deploy the AWS Lambda function + API gateway endpoint.
-  - This Stackoverflow article identifies the permissions needed for your IAM credential to deploy resources.
+- Create a FullStory account - get started with [FullStory Free Edition](https://help.fullstory.com/hc/en-us/articles/360020623354-FullStory-Free-Edition)
+- Create an Intercom account - you can sign up for a [free 14 day trial](https://www.intercom.com/help/en/articles/891-how-do-i-sign-up-for-a-free-trial-of-intercom)
+- Create an [AWS Account](https://repost.aws/knowledge-center/create-and-activate-aws-account) and a [CLI credential file](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
+  - Your IAM credential will need permissions to create additional IAM resources to bootstrap the [AWS CDK library](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html) used to deploy the AWS Lambda function + API gateway endpoint.
+  - This [Stackoverflow article](https://stackoverflow.com/questions/57118082/what-iam-permissions-are-needed-to-use-cdk-deploy) identifies the permissions needed for your IAM credential to deploy resources.
 - Check out the source code from GitHub: https://github.com/patrick-fs/fullstory-intercom
 
 ### FullStory Configuration
 
 The browser and server APIs used for this demo are pre-realease APIs, currently deployed to FullStory's staging environment. At this point in time, only FullStorians can access these APIs.
 
-- Use the v2 snippet to get access the pre-release v2beta browser API.
-- An example of the v2 snippet, as well as a placeholder for your staging `window['_fs_org']` value can be found in the `<head>` of this homepage.
+- Use the v2 snippet to get access the pre-release [v2beta browser API](https://developer.fullstory.com/browser/v2/getting-started/).
+- An example of the v2 snippet, as well as a placeholder for your staging `window['_fs_org']` value can be found in the `<head>` of [this homepage](https://github.com/patrick-fs/fullstory-intercom/blob/main/homepage/index.html).
 
 ### AWS Configuration
 
@@ -48,8 +48,8 @@ IntercomLambdaMiddlewareStack.{long resource id omitted} = https://{the API URL 
 
 #### Intercom Messenger (browser chat widget)
 
-- Go through the motions of installing the Intercom JavaScript code per this article.
-- You'll see an app_id value that you can put into the placeholder found in the <head> of this homepage.
+- Go through the motions of installing the Intercom JavaScript code per [this article](https://www.intercom.com/help/en/articles/167-install-intercom-in-your-product-for-visitors-and-leads).
+- You'll see an app_id value that you can put into the placeholder found in the `<head>` of [this homepage](https://github.com/patrick-fs/fullstory-intercom/blob/main/homepage/index.html).
 
 #### Web hook subscriptions
 
@@ -57,7 +57,7 @@ IntercomLambdaMiddlewareStack.{long resource id omitted} = https://{the API URL 
   - conversation.admin.closed
   - conversation.rating.added
 - Make sure to add "intercom" to the URL path when configuring your web hook endpoint URL: `https://{the API URL generated for you}/prod/intercom`
-- Details about configuring web hooks and subscribing to topics can be found here.
+- Details about configuring web hooks and subscribing to topics can be found [here](https://developers.intercom.com/building-apps/docs/setting-up-webhooks).
 
 ## Using Intercom Conversation Data in FullStory
 
@@ -69,7 +69,9 @@ Once everything is configured, the following events can be sent to FullStory usi
 - Intercom Conversation Closed
 - Intercom Conversation Rated
 
-You'll need to play the part of both the customer and the Customer Support agent. You'll receive messages from yourself in your Intercom Inbox. When you open the chat widget (playing the part of the user) a Intercom Conversation Opened event is attached to the session. When you close the conversation (playing the part of the agent) a Intercom Conversation Closed event is attached to the session. If a follow-up rating request is sent to the user via chat, a Intercom Conversation Rated event is attached to the session once the user rates the conversation. Head's up that the rating request is only triggered under certain conditions. Those conditions can be found here.
+You'll need to play the part of both the customer and the Customer Support agent. You'll receive messages from yourself in your [Intercom Inbox](https://www.intercom.com/help/en/articles/6274899-get-started-with-the-inbox). 
+When you open the chat widget (playing the part of the user) a Intercom Conversation Opened event is attached to the session. When you close the conversation (playing the part of the agent) a Intercom Conversation Closed event is attached to the session. If a follow-up rating request is sent to the user via chat, a Intercom Conversation Rated event is attached to the session once the user rates the conversation. Head's up that the rating request is only triggered under certain conditions. Those conditions can be found 
+[here](https://www.intercom.com/help/en/articles/941027-measure-customer-satisfaction-with-conversation-ratings#when-does-operator-send-conversation-ratings).
 
 ### Capturing Intercom conversation events
 
@@ -78,14 +80,14 @@ You'll need to play the part of both the customer and the Customer Support agent
 #### Funnels
 | ![fs_funnel](https://user-images.githubusercontent.com/45576380/236955731-226517f9-429e-4395-9258-3a5a1e5a68c6.png) |
 |:--:|
-| Funnels can track drop off in customer service conversations |
+| [Funnels](https://help.fullstory.com/hc/en-us/articles/360045159373-About-Funnels) can track drop off in customer service conversations |
 
 #### Segements
 | ![fs_segment](https://user-images.githubusercontent.com/45576380/236955780-0f27141f-906b-4e57-9190-411f28010b1f.png) |
 |:--:|
-| You can find sessions for users who completed a chat or users who rated a chat poorly (or well!) |
+| You can [find sessions for users](https://help.fullstory.com/hc/en-us/articles/360020829633#Segment) who completed a chat or users who rated a chat poorly (or well!) |
 
 #### Alerts
 | ![fs_segment_alert](https://user-images.githubusercontent.com/45576380/236955794-d0f18f72-a1cd-4c67-bf39-b0f5d3aaa66e.png) |
 |:--:|
-| Alerts can be configured to fire based off of the rate that users are providing negative survey feedback |
+| [Alerts](https://help.fullstory.com/hc/en-us/articles/360020828653-Introduction-to-Alerts) can be configured to fire based off of the rate that users are providing negative survey feedback |
