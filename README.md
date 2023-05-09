@@ -60,7 +60,10 @@ IntercomLambdaMiddlewareStack.{long resource id omitted} = https://{the API URL 
 - Supscribe to two topics using the web hook URL created during AWS Configuration:
   - conversation.admin.closed
   - conversation.rating.added
-- Make sure to add "intercom" to the URL path when configuring your web hook endpoint URL: `https://{the API URL generated for you}/prod/intercom`
+- Make sure to add "intercom" to the URL path when configuring your web hook endpoint URL: 
+```
+https://{the API URL generated for you}/prod/intercom
+````
 - Details about configuring web hooks and subscribing to topics can be found [here](https://developers.intercom.com/building-apps/docs/setting-up-webhooks).
 
 ## Using Intercom Conversation Data in FullStory
