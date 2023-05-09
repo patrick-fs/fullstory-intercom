@@ -53,7 +53,7 @@ IntercomLambdaMiddlewareStack.{long resource id omitted} = https://{the API URL 
 #### Intercom Messenger (browser chat widget)
 
 - Go through the motions of installing the Intercom JavaScript code per [this article](https://www.intercom.com/help/en/articles/167-install-intercom-in-your-product-for-visitors-and-leads).
-- You'll see an app_id value that you can put into the placeholder found in the `<head>` of [the homepage](https://github.com/patrick-fs/fullstory-intercom/blob/main/homepage/index.html).
+- You'll see an `app_id` value that you can put into the placeholder found in the `<head>` of [the homepage](https://github.com/patrick-fs/fullstory-intercom/blob/main/homepage/index.html).
 
 #### Web hook subscriptions
 
