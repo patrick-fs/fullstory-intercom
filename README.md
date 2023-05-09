@@ -25,7 +25,7 @@ There are a few things you'll need to do before running this example yourself:
 - Create an Intercom account - you can sign up for a [free 14 day trial](https://www.intercom.com/help/en/articles/891-how-do-i-sign-up-for-a-free-trial-of-intercom)
 - Create an [AWS Account](https://repost.aws/knowledge-center/create-and-activate-aws-account) and a [CLI credential file](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
   - Your IAM credential will need permissions to create additional IAM resources to bootstrap the [AWS CDK library](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html) used to deploy the AWS Lambda function + API gateway endpoint.
-  - This [Stackoverflow article](https://stackoverflow.com/questions/57118082/what-iam-permissions-are-needed-to-use-cdk-deploy) identifies the permissions needed for your IAM credential to deploy resources.
+  - This [Stackoverflow article](https://stackoverflow.com/questions/57118082/what-iam-permissions-are-needed-to-use-cdk-deploy) identifies the permissions needed for your IAM credential to deploy resources after the `cdk bootstrap` command is run.
 - Check out the source code from GitHub: https://github.com/patrick-fs/fullstory-intercom
 
 ### FullStory Configuration
