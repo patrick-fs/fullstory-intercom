@@ -87,7 +87,7 @@ When you open the chat widget (playing the part of the user) a _Intercom Convers
 |:--:|
 | [Funnels](https://help.fullstory.com/hc/en-us/articles/360045159373-About-Funnels) can track drop off in customer service conversations |
 
-#### Segements
+#### Segments
 | ![fs_segment](https://user-images.githubusercontent.com/45576380/236959472-35a0c89c-fbf8-4d2a-8512-6839de28d034.png) |
 |:--:|
 | You can [find sessions for users](https://help.fullstory.com/hc/en-us/articles/360020829633#Segment) who completed a chat or users who rated a chat poorly (or well!) |
