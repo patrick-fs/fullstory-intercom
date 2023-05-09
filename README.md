@@ -39,7 +39,7 @@ The browser and server APIs used for this demo are pre-realease APIs, currently 
 
 - Once you've run the `cdk bootstrap` command to get the AWS CDK setup for use on your workstation, run `npm i` in the _middleware_ directory.
 - To deploy the AWS Lambda function + API Gateway that will be used to receive Intercom webhooks, `run npm run deploy` in the _middleware_ directory.
-- Take note of the "Outputs" section in the terminal once the deploy command has finished running. This will used for your web hook configruation in Intercom:
+- Take note of the "Outputs" section in the terminal once the deploy command has finished running. This will be used for your web hook configruation in Intercom:
 
 ```
 ✨  Deployment time: 1.61s
