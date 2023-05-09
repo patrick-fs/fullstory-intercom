@@ -60,7 +60,7 @@ IntercomLambdaMiddlewareStack.{long resource id omitted} = https://{the API URL 
 - Supscribe to two topics using the web hook URL created during AWS Configuration:
   - conversation.admin.closed
   - conversation.rating.added
-- Make sure to add "intercom" to the URL path when configuring your web hook endpoint URL: 
+- Make sure to add "intercom" to the URL path output from the AWS CDK when configuring your web hook endpoint URL: 
 ```
 https://{the API URL generated for you}/prod/intercom
 ````
