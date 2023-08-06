@@ -10,8 +10,8 @@
 
     <script>
       // https://developer.fullstory.com/browser/v2/getting-started/
-      window['_fs_host'] = 'staging.fullstory.com';
-      window['_fs_script'] = 'edge.staging.fullstory.com/s/fs.js';
+      window['_fs_host'] = 'fullstory.com';
+      window['_fs_script'] = 'edge.fullstory.com/s/fs.js';
       window['_fs_org'] = 'YOUR_ORG_ID';
       window['_fs_namespace'] = 'FS';
       !function(m,n,e,t,l,o,g,y){var s,f,a=function(h){
@@ -78,6 +78,36 @@ return g._w[s].apply(this,arguments)}),g._v="2.0.0")}(window,document,window._fs
           <li>An AWS Lambda function + API gateway endpoint is subscribed to these two web hook events in Intercom.</li>
           <li>The AWS Lambda function creates custom events via the FullStory API that links the chat events with the session replay where the chat occurred.</li>
         </ol>
+      <h2>Using Intercom Conversation Data in FullStory</h2>
+      <h3>Capturing Intercom conversation events</h3>
+      <p>
+        Once everything is configured, the following events can be sent to FullStory using this demo app:
+        <ul>
+          <li>Intercom Conversation Opened</li>
+          <li>Intercom Conversation Closed</li>
+          <li>Intercom Conversation Rated</li>
+        </ul>
+        You'll need to play the part of both the customer and the Customer Support agent. 
+        You'll receive messages from yourself in your <a href="https://www.intercom.com/help/en/articles/6274899-get-started-with-the-inbox">Intercom Inbox</a>.
+        When you open the chat widget (playing the part of the user) a Intercom Conversation Opened event is attached to the session. 
+        When you close the conversation (playing the part of the agent) a Intercom Conversation Closed event is attached to the session.
+        If a follow-up rating request is sent to the user via chat, a Intercom Conversation Rated event is attached to the session once the user rates the conversation.
+        Head's up that the rating request is only triggered under certain conditions. Those conditions can be found 
+        <a href="https://www.intercom.com/help/en/articles/941027-measure-customer-satisfaction-with-conversation-ratings#when-does-operator-send-conversation-ratings">here</a>.
+      </p>
+      <h3>Anaylizing Intercom conversation data</h3>
+      <h4>Funnels</h4>
+      <div class="screenshot"><img src="images/fs_funnel.png"/>
+        <p><a href="https://help.fullstory.com/hc/en-us/articles/360045159373-About-Funnels">Funnels</a> can track drop off in customer service conversations</p>
+      </div>
+      <h4>Segments</h4>
+      <div class="screenshot"><img src="images/fs_segment.png"/>
+        <p>You can <a href="https://help.fullstory.com/hc/en-us/articles/360020829633#Segment">find sessions for users</a> who completed a chat or users who rated a chat poorly (or well!)</p>
+      </div>
+      <h4>Alerts</h4>
+      <div class="screenshot"><img src="images/fs_segment_alert.png"/>
+        <p><a href="https://help.fullstory.com/hc/en-us/articles/360020828653-Introduction-to-Alerts">Alerts</a> can be configured to fire based off of the rate that users are providing negative survey feedback</p>
+      </div>
       <h2>Demo Setup</h2>
       <h3>Prerequisites</h3>
       <p>
@@ -131,36 +161,6 @@ IntercomLambdaMiddlewareStack.{long resource id omitted} = https://{the API URL 
         <li>Make sure to add "intercom" to the URL path when configuring your web hook endpoint URL: <code>https://{the API URL generated for you}/prod/intercom</code></li>
         <li>Details about configuring web hooks and subscribing to topics can be found <a href="https://developers.intercom.com/building-apps/docs/setting-up-webhooks">here</a>.</li>
       </ul>     
-      <h2>Using Intercom Conversation Data in FullStory</h2>
-      <h3>Capturing Intercom conversation events</h3>
-      <p>
-        Once everything is configured, the following events can be sent to FullStory using this demo app:
-        <ul>
-          <li>Intercom Conversation Opened</li>
-          <li>Intercom Conversation Closed</li>
-          <li>Intercom Conversation Rated</li>
-        </ul>
-        You'll need to play the part of both the customer and the Customer Support agent. 
-        You'll receive messages from yourself in your <a href="https://www.intercom.com/help/en/articles/6274899-get-started-with-the-inbox">Intercom Inbox</a>.
-        When you open the chat widget (playing the part of the user) a Intercom Conversation Opened event is attached to the session. 
-        When you close the conversation (playing the part of the agent) a Intercom Conversation Closed event is attached to the session.
-        If a follow-up rating request is sent to the user via chat, a Intercom Conversation Rated event is attached to the session once the user rates the conversation.
-        Head's up that the rating request is only triggered under certain conditions. Those conditions can be found 
-        <a href="https://www.intercom.com/help/en/articles/941027-measure-customer-satisfaction-with-conversation-ratings#when-does-operator-send-conversation-ratings">here</a>.
-      </p>
-      <h3>Anaylizing Intercom conversation data</h3>
-      <h4>Funnels</h4>
-      <div class="screenshot"><img src="images/fs_funnel.png"/>
-        <p><a href="https://help.fullstory.com/hc/en-us/articles/360045159373-About-Funnels">Funnels</a> can track drop off in customer service conversations</p>
-      </div>
-      <h4>Segments</h4>
-      <div class="screenshot"><img src="images/fs_segment.png"/>
-        <p>You can <a href="https://help.fullstory.com/hc/en-us/articles/360020829633#Segment">find sessions for users</a> who completed a chat or users who rated a chat poorly (or well!)</p>
-      </div>
-      <h4>Alerts</h4>
-      <div class="screenshot"><img src="images/fs_segment_alert.png"/>
-        <p><a href="https://help.fullstory.com/hc/en-us/articles/360020828653-Introduction-to-Alerts">Alerts</a> can be configured to fire based off of the rate that users are providing negative survey feedback</p>
-      </div>
     </div>
   </body>
 </html>
