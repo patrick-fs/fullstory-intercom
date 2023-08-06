@@ -68,7 +68,7 @@ export interface Schema {
   'properties'?: object;
 }
 
-export const init = (api_key: string | undefined, base_url = 'https://api.staging.fullstory.com') => {
+export const init = (api_key: string | undefined, base_url = 'https://api.fullstory.com/v2beta') => {
   if (api_key === undefined) throw new Error('api key value is undefined');
 
   const instance = axios.create({
@@ -83,7 +83,7 @@ export const init = (api_key: string | undefined, base_url = 'https://api.stagin
     let response;
     do {
       if (retry >= maxRetry) throw new Error(`retried ${maxRetry} times before giving up`);
-      response = await instance.post('/v2beta/events', request);
+      response = await instance.post('/events', request);
       if (response.status === 429) {
         // no exponential backoff
         wait = response.headers['Retry-After'] ? parseInt(response.headers['Retry-After'], 10) * 1000 : 1000;
