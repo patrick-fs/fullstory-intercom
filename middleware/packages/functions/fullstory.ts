@@ -1,10 +1,13 @@
 import axios from 'axios';
 
-export interface CreateEventsRequest {
+export interface CreateEventRequest {
   'user'?: UserIdRequest;
   'session'?: SessionIdRequest;
   'context'?: Context;
-  'events'?: Array<Event>;
+  'name': string;
+  'timestamp'?: string;
+  'properties'?: object;
+  'schema'?: Schema;
 }
 
 export interface UserIdRequest {
@@ -61,13 +64,6 @@ export interface DeviceContext {
   'viewport_height'?: number;
 }
 
-export interface Event {
-  'name'?: string;
-  'timestamp'?: string;
-  'properties'?: object;
-  'schema'?: Schema;
-}
-
 export interface Schema {
   'properties'?: object;
 }
@@ -80,7 +76,7 @@ export const init = (api_key: string | undefined, base_url = 'https://api.stagin
     headers: { common: { Authorization: `Basic ${api_key}` } }
   });
   
-  const createEvents = async (request: CreateEventsRequest) => {
+  const createEvent = async (request: CreateEventRequest) => {
     const maxRetry = 5;
     let wait = 0;
     let retry = 0;
@@ -97,7 +93,7 @@ export const init = (api_key: string | undefined, base_url = 'https://api.stagin
     } while (response.status === 429);
   }
 
-  return { createEvents };
+  return { createEvent };
 }
 
 
