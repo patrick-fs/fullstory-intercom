@@ -1,10 +1,13 @@
 import axios from 'axios';
 
-export interface CreateEventsRequest {
+export interface CreateEventRequest {
   'user'?: UserIdRequest;
   'session'?: SessionIdRequest;
   'context'?: Context;
-  'events'?: Array<Event>;
+  'name': string;
+  'timestamp'?: string;
+  'properties'?: object;
+  'schema'?: Schema;
 }
 
 export interface UserIdRequest {
@@ -61,18 +64,11 @@ export interface DeviceContext {
   'viewport_height'?: number;
 }
 
-export interface Event {
-  'name'?: string;
-  'timestamp'?: string;
-  'properties'?: object;
-  'schema'?: Schema;
-}
-
 export interface Schema {
   'properties'?: object;
 }
 
-export const init = (api_key: string | undefined, base_url = 'https://api.staging.fullstory.com') => {
+export const init = (api_key: string | undefined, base_url = 'https://api.fullstory.com/v2beta') => {
   if (api_key === undefined) throw new Error('api key value is undefined');
 
   const instance = axios.create({
@@ -80,14 +76,14 @@ export const init = (api_key: string | undefined, base_url = 'https://api.stagin
     headers: { common: { Authorization: `Basic ${api_key}` } }
   });
   
-  const createEvents = async (request: CreateEventsRequest) => {
+  const createEvent = async (request: CreateEventRequest) => {
     const maxRetry = 5;
     let wait = 0;
     let retry = 0;
     let response;
     do {
       if (retry >= maxRetry) throw new Error(`retried ${maxRetry} times before giving up`);
-      response = await instance.post('/v2beta/events', request);
+      response = await instance.post('/events', request);
       if (response.status === 429) {
         // no exponential backoff
         wait = response.headers['Retry-After'] ? parseInt(response.headers['Retry-After'], 10) * 1000 : 1000;
@@ -97,7 +93,7 @@ export const init = (api_key: string | undefined, base_url = 'https://api.stagin
     } while (response.status === 429);
   }
 
-  return { createEvents };
+  return { createEvent };
 }
 
 

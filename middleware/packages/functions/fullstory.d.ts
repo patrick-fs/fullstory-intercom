@@ -1,8 +1,11 @@
-export interface CreateEventsRequest {
+export interface CreateEventRequest {
     'user'?: UserIdRequest;
     'session'?: SessionIdRequest;
     'context'?: Context;
-    'events'?: Array<Event>;
+    'name': string;
+    'timestamp'?: string;
+    'properties'?: object;
+    'schema'?: Schema;
 }
 export interface UserIdRequest {
     'uid'?: string;
@@ -53,15 +56,9 @@ export interface DeviceContext {
     'viewport_width'?: number;
     'viewport_height'?: number;
 }
-export interface Event {
-    'name'?: string;
-    'timestamp'?: string;
-    'properties'?: object;
-    'schema'?: Schema;
-}
 export interface Schema {
     'properties'?: object;
 }
 export declare const init: (api_key: string | undefined, base_url?: string) => {
-    createEvents: (request: CreateEventsRequest) => Promise<void>;
+    createEvent: (request: CreateEventRequest) => Promise<void>;
 };

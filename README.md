@@ -15,6 +15,37 @@ FullStory's [server events API](https://developer.fullstory.com/server/v2/events
 5. An AWS Lambda function + API gateway endpoint is subscribed to these two web hook events in Intercom.
 6. The AWS Lambda function creates custom events via the FullStory API that links the chat events to the session replay where the chat occurred.
 
+## Using Intercom Conversation Data in FullStory
+
+### Capturing Intercom conversation events
+
+Once everything is configured, the following events can be sent to FullStory using this demo app:
+
+- Intercom Conversation Opened
+- Intercom Conversation Closed
+- Intercom Conversation Rated
+
+You'll need to play the part of both the customer and the Customer Support agent. You'll receive messages from yourself in your [Intercom Inbox](https://www.intercom.com/help/en/articles/6274899-get-started-with-the-inbox). 
+When you open the chat widget (playing the part of the user) a _Intercom Conversation Opened_ event is attached to the session. When you close the conversation in Intercom (playing the part of the agent) a _Intercom Conversation Closed_ event is attached to the session. If a follow-up rating request is sent to the user via chat, a _Intercom Conversation Rated_ event is attached to the session once the user rates the conversation. Head's up that the rating request is only triggered under certain conditions. Those conditions can be found 
+[here](https://www.intercom.com/help/en/articles/941027-measure-customer-satisfaction-with-conversation-ratings#when-does-operator-send-conversation-ratings).
+
+### Anaylizing Intercom conversation data
+
+#### Funnels
+| ![fs_funnel](https://user-images.githubusercontent.com/45576380/236959291-d6bf3bfd-17ae-4d25-9c6b-be403f3489c1.png) |
+|:--:|
+| [Funnels](https://help.fullstory.com/hc/en-us/articles/360045159373-About-Funnels) can track drop off in customer service conversations |
+
+#### Segments
+| ![fs_segment](https://user-images.githubusercontent.com/45576380/236959472-35a0c89c-fbf8-4d2a-8512-6839de28d034.png) |
+|:--:|
+| You can [find sessions for users](https://help.fullstory.com/hc/en-us/articles/360020829633#Segment) who completed a chat or users who rated a chat poorly (or well!) |
+
+#### Alerts
+| ![fs_segment_alert](https://user-images.githubusercontent.com/45576380/236959438-55c5cc65-273b-4b7e-a0fb-fd39be1f9019.png) |
+|:--:|
+| [Alerts](https://help.fullstory.com/hc/en-us/articles/360020828653-Introduction-to-Alerts) can be configured to fire based off of the rate that users are providing negative survey feedback |
+
 ## Demo Setup
 
 ### Prerequisites
@@ -65,34 +96,3 @@ IntercomLambdaMiddlewareStack.{long resource id omitted} = https://{the API URL 
 https://{the API URL generated for you}/prod/intercom
 ````
 - Details about configuring web hooks and subscribing to topics can be found [here](https://developers.intercom.com/building-apps/docs/setting-up-webhooks).
-
-## Using Intercom Conversation Data in FullStory
-
-### Capturing Intercom conversation events
-
-Once everything is configured, the following events can be sent to FullStory using this demo app:
-
-- Intercom Conversation Opened
-- Intercom Conversation Closed
-- Intercom Conversation Rated
-
-You'll need to play the part of both the customer and the Customer Support agent. You'll receive messages from yourself in your [Intercom Inbox](https://www.intercom.com/help/en/articles/6274899-get-started-with-the-inbox). 
-When you open the chat widget (playing the part of the user) a _Intercom Conversation Opened_ event is attached to the session. When you close the conversation in Intercom (playing the part of the agent) a _Intercom Conversation Closed_ event is attached to the session. If a follow-up rating request is sent to the user via chat, a _Intercom Conversation Rated_ event is attached to the session once the user rates the conversation. Head's up that the rating request is only triggered under certain conditions. Those conditions can be found 
-[here](https://www.intercom.com/help/en/articles/941027-measure-customer-satisfaction-with-conversation-ratings#when-does-operator-send-conversation-ratings).
-
-### Anaylizing Intercom conversation data
-
-#### Funnels
-| ![fs_funnel](https://user-images.githubusercontent.com/45576380/236959291-d6bf3bfd-17ae-4d25-9c6b-be403f3489c1.png) |
-|:--:|
-| [Funnels](https://help.fullstory.com/hc/en-us/articles/360045159373-About-Funnels) can track drop off in customer service conversations |
-
-#### Segments
-| ![fs_segment](https://user-images.githubusercontent.com/45576380/236959472-35a0c89c-fbf8-4d2a-8512-6839de28d034.png) |
-|:--:|
-| You can [find sessions for users](https://help.fullstory.com/hc/en-us/articles/360020829633#Segment) who completed a chat or users who rated a chat poorly (or well!) |
-
-#### Alerts
-| ![fs_segment_alert](https://user-images.githubusercontent.com/45576380/236959438-55c5cc65-273b-4b7e-a0fb-fd39be1f9019.png) |
-|:--:|
-| [Alerts](https://help.fullstory.com/hc/en-us/articles/360020828653-Introduction-to-Alerts) can be configured to fire based off of the rate that users are providing negative survey feedback |
